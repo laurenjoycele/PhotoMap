@@ -26,6 +26,9 @@
                                 <rect key="frame" x="175" y="566" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="icons8-camera-50"/>
+                                <connections>
+                                    <action selector="pressedCameraButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6ma-E2-FJW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
