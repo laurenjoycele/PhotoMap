@@ -8,6 +8,7 @@
 
 #import "PhotoMapViewController.h"
 #import <MapKit/MapKit.h>
+#import "LocationsViewController.h"
 
 @interface PhotoMapViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -29,6 +30,10 @@
 
 }
 
+- (void)locationsViewController:(LocationsViewController *)controller didPickLocationWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude{
+    [self.navigationController popToViewController:self animated:YES];
+}
+
 //implement delegate method
 //When the user finishes taking the picture, UIImagePickerController returns a dictionary that contains the image and some other meta data
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
@@ -40,7 +45,7 @@
     // Do something with the images (based on your use case)
     
     // Dismiss UIImagePickerController to go back to your original view controller
-    [self dismissViewControllerAnimated:YES completion: ^(){[self performSegueWithIdentifier:@"firstSegue" sender:nil];}];
+    [self dismissViewControllerAnimated:YES completion: ^(){[self performSegueWithIdentifier:@"tagSegue" sender:nil];}];
 }
 
 - (IBAction)pressedCameraButton:(id)sender {
@@ -67,14 +72,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    LocationsViewController *locationController = [segue destinationViewController];
+    
+    locationController.delegate = self;
+
 }
-*/
+
 
 @end
